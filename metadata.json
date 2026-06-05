@@ -1,0 +1,6 @@
+{
+  "name": "Cartel LED",
+  "description": "Pantalla LED virtual en tu dispositivo. Configura un mensaje con emojis, ajusta el color y velocidad, y preséntalo en pantalla completa como en los carteles luminosos.",
+  "requestFramePermissions": ["fullscreen"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
