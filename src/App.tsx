@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Palette, Type, Zap, X, Maximize, Clock } from 'lucide-react';
+import { Play, Palette, Type, Zap, X, Maximize, Clock, CaseUpper } from 'lucide-react';
 
 const PRESET_COLORS = [
   { id: 'rojo', value: '#ff1100' },
@@ -11,9 +11,18 @@ const PRESET_COLORS = [
   { id: 'blanco', value: '#ffffff' },
 ];
 
+const FONTS = [
+  { id: 'font-led-square', name: 'Grilla', class: 'font-led-square font-bold' },
+  { id: 'font-led-circle', name: 'Puntos', class: 'font-led-circle font-bold' },
+  { id: 'font-sans', name: 'Mundo', class: 'font-sans font-black' },
+  { id: 'font-serif', name: 'Clásica', class: 'font-serif italic font-bold' },
+  { id: 'font-cursive', name: 'Cursiva', class: 'font-cursive' },
+];
+
 export default function App() {
   const [text, setText] = useState("¡HOLA! 🚀");
   const [color, setColor] = useState("#00ff22");
+  const [selectedFont, setSelectedFont] = useState(FONTS[0]);
   const [speed, setSpeed] = useState(50);
   const [time, setTime] = useState(0);
   const [size, setSize] = useState(50);
@@ -116,7 +125,7 @@ export default function App() {
           <X className="w-8 h-8" />
         </button>
         <div 
-          className="animate-marquee w-max whitespace-nowrap font-led led-glow leading-none select-none"
+          className={`animate-marquee w-max whitespace-nowrap led-glow leading-none select-none ${selectedFont.class}`}
           style={{ 
             fontSize: `${size}vh`, 
             animationDuration: `${animationDuration}s`
@@ -149,8 +158,32 @@ export default function App() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Escribe aquí..."
-              className="w-full bg-black/60 border border-neutral-700 rounded-2xl px-5 py-4 text-xl sm:text-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-led text-white shadow-inner placeholder:text-neutral-600"
+              className={`w-full bg-black/60 border border-neutral-700 rounded-2xl px-5 py-4 text-xl sm:text-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-white shadow-inner placeholder:text-neutral-600 ${selectedFont.class}`}
             />
+          </div>
+
+          {/* Typography Select */}
+          <div className="space-y-3 pt-2">
+             <label className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
+              <CaseUpper size={18} className="text-purple-400" />
+              Tipografía
+            </label>
+            <div className="grid grid-cols-5 gap-2 pb-2">
+              {FONTS.map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => setSelectedFont(f)}
+                  className={`flex items-center justify-center py-2 px-1 rounded-xl transition-all ${
+                    selectedFont.id === f.id
+                      ? 'bg-neutral-800 text-white ring-2 ring-purple-500 shadow-md'
+                      : 'bg-neutral-900/50 text-neutral-400 hover:text-white hover:bg-neutral-800 border-neutral-800/50 border'
+                  }`}
+                  title={f.name}
+                >
+                  <span className={`text-xl leading-none ${f.class}`}>Aa</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Color Select */}

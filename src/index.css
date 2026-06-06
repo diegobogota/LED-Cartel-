@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Codystar&family=DotGothic16&family=Inter:wght@400;700;900&family=Pacifico&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-led: "DotGothic16", monospace;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-cursive: "Pacifico", cursive, "Comic Sans MS";
+  --font-led-square: "DotGothic16", monospace;
+  --font-led-circle: "Codystar", monospace;
 }
 
 body {
   background-color: #050505;
   color: #fff;
   overscroll-behavior-y: none;
-}
-
-.font-led {
-  font-family: var(--font-led);
 }
 
 .led-glow {
